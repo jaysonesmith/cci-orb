@@ -1,0 +1,28 @@
+version: 2.1
+description: "a demo orb by js"
+
+commands:
+  yell:
+    description: Yell at the person provided
+    parameters:
+      person:
+        type: string
+        description: A name of a person to yell at
+        default: "PERSON"
+    steps:
+      - run: "echo HELLO TO YOU << parameters.person >>"
+
+examples:
+  yeller:
+    description: yell at someone from your build job
+    usage:
+      version: 2.1
+      orbs:
+        yell: jaysonesmith/demo@0.0.2
+      jobs:
+        build:
+          docker:
+            - image: cimg/base:stable
+          steps:
+            - yell/yell:
+                person: Jayson
